@@ -101,12 +101,12 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <SidebarMenu>
+        <SidebarMenu className="mb-5 w-full items-center">
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton size="lg">
-                  <Avatar>
+                  <Avatar className="w-10 h-10">
                     <AvatarFallback>F</AvatarFallback>
                   </Avatar>
                   <div>
