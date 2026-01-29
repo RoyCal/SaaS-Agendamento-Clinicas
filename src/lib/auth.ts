@@ -13,6 +13,10 @@ export const auth = betterAuth({
     usePlural: true,
     schema,
   }),
+  trustedOrigins: [
+    "http://localhost:3000",
+    "http://192.168.0.5:3000",
+  ],
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
