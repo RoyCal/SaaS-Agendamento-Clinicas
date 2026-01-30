@@ -48,7 +48,7 @@ const PatientsPage = async () => {
         </PageActions>
       </PageHeader>
       <PageContent>
-        <DataTable data={patients} columns={patientTableColumns} />
+        <DataTable data={patients} columns={patientTableColumns} noContentMessage="Nenhum paciente cadastrado"/>
       </PageContent>
     </PageContainer>
   );

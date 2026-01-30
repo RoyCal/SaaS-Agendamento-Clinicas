@@ -52,7 +52,7 @@ const DoctorsPage = async () => {
         {doctors.length === 0 ? (
           <div className="flex h-96 items-center justify-center rounded-lg border border-dashed">
             <p className="text-muted-foreground">
-              Nenhum médico cadastrado ainda
+              Nenhum médico cadastrado
             </p>
           </div>
         ) : (
