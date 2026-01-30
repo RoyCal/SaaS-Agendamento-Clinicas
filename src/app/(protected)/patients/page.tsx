@@ -12,13 +12,13 @@ import {
   PageTitle,
 } from "@/components/ui/page-container";
 import { db } from "@/db";
-import { doctorsTable } from "@/db/schema";
+import { patientsTable } from "@/db/schema";
 import { auth } from "@/lib/auth";
 
-import AddDoctorButton from "./components/add-doctor-button";
-import DoctorCard from "./components/doctor-card";
+import AddPatientButton from "./components/add-patient-button";
+import PatientCard from "./components/patient-card";
 
-const DoctorsPage = async () => {
+const PatientsPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -31,34 +31,32 @@ const DoctorsPage = async () => {
     redirect("/clinic-form");
   }
 
-  const doctors = await db.query.doctorsTable.findMany({
-    where: eq(doctorsTable.clinicId, session.user.clinic.id),
+  const patients = await db.query.patientsTable.findMany({
+    where: eq(patientsTable.clinicId, session.user.clinic.id),
   });
 
   return (
     <PageContainer>
       <PageHeader>
         <PageHeaderContent>
-          <PageTitle>Médicos</PageTitle>
-          <PageDescription>
-            Gerencie os médicos e suas clínicas{" "}
-          </PageDescription>
+          <PageTitle>Pacientes</PageTitle>
+          <PageDescription>Gerencie os pacientes da clínica</PageDescription>
         </PageHeaderContent>
         <PageActions>
-          <AddDoctorButton />
+          <AddPatientButton />
         </PageActions>
       </PageHeader>
       <PageContent>
-        {doctors.length === 0 ? (
+        {patients.length === 0 ? (
           <div className="flex h-96 items-center justify-center rounded-lg border border-dashed">
             <p className="text-muted-foreground">
-              Nenhum médico cadastrado ainda
+              Nenhum paciente cadastrado ainda
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {doctors.map((doctor) => (
-              <DoctorCard key={doctor.id} doctor={doctor} />
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {patients.map((patient) => (
+              <PatientCard key={patient.id} patient={patient} />
             ))}
           </div>
         )}
@@ -67,4 +65,4 @@ const DoctorsPage = async () => {
   );
 };
 
-export default DoctorsPage;
+export default PatientsPage;
